@@ -38,9 +38,13 @@ class read_hyp_file:
         hyp_file_lines = hyp_file.readlines()
         for i in range(len(hyp_file_lines)):
             line_split = re.split(' +', hyp_file_lines[i])
+            if line_split[0] == 'HYPOCENTER':
+                self.max_prob_hypocenter = {}
+                self.max_prob_hypocenter['x'] = float(line_split[2])
+                self.max_prob_hypocenter['y'] = float(line_split[4])
+                self.max_prob_hypocenter['z'] = float(line_split[6])
             if line_split[0] == 'GEOGRAPHIC':
                 self.origin_time = obspy.UTCDateTime(''.join(line_split[2:8]))
-                self.max_prob_hypocenter = {}
                 self.max_prob_hypocenter['lat'] = float(line_split[9])
                 self.max_prob_hypocenter['lon'] = float(line_split[11])
                 self.max_prob_hypocenter['depth'] = float(line_split[13])
@@ -76,6 +80,10 @@ class read_hyp_file:
                     self.phase_data[station][phase_id]['SAzim'] = float(line_split[22])
                     self.phase_data[station][phase_id]['RAzim'] = float(line_split[23])
                     self.phase_data[station][phase_id]['RDip'] = float(line_split[24])
+                    self.phase_data[station][phase_id]['StaLoc'] = {}
+                    self.phase_data[station][phase_id]['StaLoc']['x'] = float(line_split[18])
+                    self.phase_data[station][phase_id]['StaLoc']['y'] = float(line_split[19])
+                    self.phase_data[station][phase_id]['StaLoc']['z'] = float(line_split[20])
                 # And break the loop as already found all the information:
                 break 
                 
