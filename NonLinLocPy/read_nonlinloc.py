@@ -71,7 +71,10 @@ class read_hyp_file:
                         self.phase_data[station] = {}
                     phase_id = line_split[4]
                     self.phase_data[station][phase_id] = {}
-                    self.phase_data[station][phase_id]['arrival_time'] = obspy.UTCDateTime(''.join((line_split[6], line_split[7], line_split[8].split('.')[0].zfill(2), '.', line_split[8].split('.')[1])))
+                    try:
+                        self.phase_data[station][phase_id]['arrival_time'] = obspy.UTCDateTime(''.join((line_split[6], line_split[7], line_split[8].split('.')[0].zfill(2), '.', line_split[8].split('.')[1])))
+                    except IndexError:
+                        self.phase_data[station][phase_id]['arrival_time'] = obspy.UTCDateTime(''.join((line_split[6], line_split[7], line_split[8].zfill(2), '.000'))) # If no subsecond information
                     self.phase_data[station][phase_id]['arrival_time_err'] = float(line_split[10])
                     self.phase_data[station][phase_id]['TTpred'] = float(line_split[15])
                     self.phase_data[station][phase_id]['Res'] = float(line_split[16])
