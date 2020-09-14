@@ -87,6 +87,7 @@ class read_hyp_file:
                     self.phase_data[station][phase_id]['StaLoc']['x'] = float(line_split[18])
                     self.phase_data[station][phase_id]['StaLoc']['y'] = float(line_split[19])
                     self.phase_data[station][phase_id]['StaLoc']['z'] = float(line_split[20])
+                    self.phase_data[station][phase_id]['polarity'] = line_split[5]
                 # And break the loop as already found all the information:
                 break 
                 
