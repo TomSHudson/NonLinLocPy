@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="NonLinLocPy",
-    version="0.0.1",
+    version="0.0.2",
     author="Tom Hudson",
     author_email="thomas.hudson@earth.ox.ac.uk",
     description="A package for reading NonLinLoc data into python",

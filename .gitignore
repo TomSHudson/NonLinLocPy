@@ -1,4 +1,5 @@
 NonLinLocPy.egg-info
 build
-NonLinLocPy/__pycache__
+**/__pycache__
+__pycache__
 **/*.pyc
