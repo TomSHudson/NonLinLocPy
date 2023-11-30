@@ -39,8 +39,12 @@ class read_hyp_file:
         for i in range(len(hyp_file_lines)):
             line_split = re.split(' +', hyp_file_lines[i])
             if line_split[0] == 'SIGNATURE':
-                obs_fname_tmp = line_split[6]
-                self.obs_fname = obs_fname_tmp.split('/')[-1]
+                try:
+                    obs_fname_tmp = line_split[6]
+                    self.obs_fname = obs_fname_tmp.split('/')[-1]
+                except IndexError:
+                    print("NLLoc SIGNATURE format not recognised, therefore not populating self.obs_fname.")
+                    self.obs_fname = ''
             if line_split[0] == 'HYPOCENTER':
                 self.max_prob_hypocenter = {}
                 self.max_prob_hypocenter['x'] = float(line_split[2])
